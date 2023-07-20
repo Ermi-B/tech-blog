@@ -1,0 +1,47 @@
+header, .project:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+}
+.landing-body{
+  height: 100vh;  
+}
+.landing-font{
+  font-family: 'Exo 2', sans-serif;
+  font-size: 100px;
+}
+.landing-text{
+  font-size: 30px;
+}
+.user-text{
+  font-size:25px;
+}
+.view-jobs{
+  background-color: #027db5;
+  color: white;
+}
+footer {
+  margin-top: auto;
+}
+.log-button:hover {
+  background-color: rgb(118, 103, 66);
+  color :white;
+}
+.no-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #1b89bc;
+  text-decoration: none;
+  font-size: 100%;
+}
+
+.no-button:hover {
+  color: #065b83;
+  text-decoration: underline;
+}
+
+.dollar-amount {
+  color: #056605;
+  font-weight: bold;
+  margin-left: -5px;
+}

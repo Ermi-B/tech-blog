@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { User, Blog } = require("../../models");
-
+const withAuth = require('../../utils/withAuth')
 router.get("/", async (req, res) => {
   try {
     const blogs = await Blog.findAll({});
@@ -29,7 +29,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", withAuth, async (req, res) => {
   try {
     const { title, content, user_id } = req.body;
     const newBlog = await Blog.create({
@@ -43,7 +43,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id",withAuth, async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -59,7 +59,7 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id",withAuth, async (req, res) => {
 
   const { title, content } = req.body;
   try {
