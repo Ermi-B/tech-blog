@@ -7,7 +7,7 @@ router.get("/", async (req, res) => {
   });
 
   const blog = blogs.map((item) => item.get({ plain: true }));
-  console.log(blog);
+  
   res.render("homepage", {
     blog,
     logged_in: req.session.logged_in,
@@ -20,7 +20,7 @@ router.get("/blog/:id", async (req, res) => {
   });
 
   const blog = blogs.get({ plain: true });
-  console.log(blog);
+  
   res.render("blog", {
     blog,
     logged_in: req.session.logged_in,
@@ -38,7 +38,7 @@ router.get("/dashboard", withAuth,async (req, res) => {
         return;
       }
       const blog = user.get({ plain: true }).blogs;
-      console.log(blog)
+      
        res.render("dashboard", {
       blog,
       logged_in: req.session.logged_in,
@@ -49,6 +49,32 @@ router.get("/dashboard", withAuth,async (req, res) => {
     console.log(error);
   }
 });
+
+router.get('/dashboard/create',async(req,res)=>{
+  try {
+    const user_id = req.session.user_id
+    const blogs = await User.findByPk(user_id, {
+      include: [{ model: Blog }],
+      attributes:{exclude:["password"]}
+    }).then((user) => {
+      if (!user) {
+        console.log("no user found");
+        return;
+      }
+      const blog = user.get({ plain: true });
+     
+       res.render("create", {
+      blog,
+      logged_in: req.session.logged_in,
+    });
+    });
+
+  } catch (error) {
+    console.log(error);
+  }
+});
+ 
+
 
 router.get("/login", async (req, res) => {
   res.render("login", {});
