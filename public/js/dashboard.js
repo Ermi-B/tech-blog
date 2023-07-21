@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded',()=>{
           const blogId = event.target.getAttribute('data-id');
           
          
-          // Add your edit logic here
+          window.location.replace(`/dashboard/edit/${blogId}`)
         }
       
         // Check if the clicked element has the 'delete-blog' class

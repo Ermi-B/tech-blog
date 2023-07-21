@@ -73,6 +73,29 @@ router.get('/dashboard/create',async(req,res)=>{
     console.log(error);
   }
 });
+
+
+router.get('/dashboard/edit/:id',async(req,res)=>{
+  try {
+    const blog_id = req.params.id
+    const blogs = await Blog.findByPk(blog_id, {}).
+    then((result) => {
+      if (!result) {
+        console.log("no user found");
+        return;
+      }
+      const blog = result.get({ plain: true });
+      
+       res.render("edit", {
+      blog,
+      logged_in: req.session.logged_in,
+    });
+    });
+
+  } catch (error) {
+    console.log(error);
+  }
+});
  
 
 

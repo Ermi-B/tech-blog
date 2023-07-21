@@ -14,6 +14,7 @@ const loginFormHandler = async (event) => {
       });
   
       if (response.ok) {
+        alert('You are logged in')
         document.location.replace("/dashboard");
       } else {
         alert("Failed to log in.");
@@ -29,16 +30,17 @@ const loginFormHandler = async (event) => {
     
     if (username && password) {
         
-      const response = await fetch("/api/user/login", {
+      const response = await fetch("/api/user", {
         method: "POST",
         body: JSON.stringify({ username, password }),
         headers: { "Content-Type": "application/json" },
       });
   
       if (response.ok) {
-        res.redirect('/');
+        alert('Account created. You can now login with your username and pass')
+        window.location.replace('/dashboard');
       } else {
-        res.status(400).json({ message: 'Failed to login' });
+        alert('Failed to Sign up');
       }
     }
   };

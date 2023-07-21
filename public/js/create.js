@@ -7,7 +7,7 @@ const userId = userIdEl.dataset.userId
 async function createBlog(e) {
   e.preventDefault();
   try {
-    console.log(titleEl.value);
+    
     const blog = await fetch("/api/blog", {
       method: "POST",
       body: JSON.stringify({
@@ -21,6 +21,7 @@ async function createBlog(e) {
     });
     if (blog) {
       alert("blog created");
+      window.location.replace('/dashboard')
     }
   } catch (error) {
     console.error("Error creating blog:", error.message);
