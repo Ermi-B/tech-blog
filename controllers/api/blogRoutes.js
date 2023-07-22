@@ -1,9 +1,11 @@
 const router = require("express").Router();
-const { User, Blog } = require("../../models");
+const { User, Blog, Comment } = require("../../models");
 const withAuth = require('../../utils/withAuth')
 router.get("/", async (req, res) => {
   try {
-    const blogs = await Blog.findAll({});
+    const blogs = await Blog.findAll({
+      include:[{model:Comment}]
+    });
     if (blogs.length === 0) {
       res.status(404).json({ message: "no blog found!" });
       return;

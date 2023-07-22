@@ -8,10 +8,28 @@
             <span class="text-sm text-gray-500 dark:text-gray-400">{{blog.user.name}}</span>
             <h5 class="mb-1 text-3xl font-medium text-gray-900">{{blog.title}}</h5>
             <p>{{blog.content}}</p>
+             <div class="flex w-3/4 mt-4">
+            <input id="comment" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-900 focus:border-blue-500 block w-full p-2.5 " placeholder="comment" required>
+            <button id="submit" type="submit" class="text-white w-1/8 bg-sky-200 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-blue-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center mx-2"><i class="fa-regular fa-paper-plane"></i></button></div>
         </div>
-
+        
+   <div class=" flex flex-col justify-center items-center mx-8 my-4  p-4  rounded">
+        <h3 class="text-xl mb-4">Comments</h3>
+        {{!-- comment repeat --}}
+        {{#each blogComments as |comment|}}
+        <div class="w-4/5 border rounded my-2 p-2 px-4">
+        <img class="w-16 h-16 mb-3 rounded-full shadow-lg" src="/img/icon.png" alt="">
+            <span class="text-sm text-gray-500 dark:text-gray-400">{{comment.user.name}}</span>
+            <p class="text-sm">{{comment.content}}</p>
+        </div>
+        {{/each}}
     </div>
+    </div>
+
    
+
     
    
 </div>
+
+ 
