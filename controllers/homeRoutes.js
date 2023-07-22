@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
   });
 });
 
-router.get("/blog/:id", async (req, res) => {
+router.get("/blog/:id", withAuth, async (req, res) => {
   const blogs = await Blog.findByPk(req.params.id, {
     include: [
       { model: User },
@@ -65,7 +65,7 @@ router.get("/dashboard", withAuth,async (req, res) => {
   }
 });
 
-router.get('/dashboard/create',async(req,res)=>{
+router.get('/dashboard/create',withAuth, async(req,res)=>{
   try {
     const user_id = req.session.user_id
     const blogs = await User.findByPk(user_id, {
@@ -90,7 +90,7 @@ router.get('/dashboard/create',async(req,res)=>{
 });
 
 
-router.get('/dashboard/edit/:id',async(req,res)=>{
+router.get('/dashboard/edit/:id',withAuth,async(req,res)=>{
   try {
     const blog_id = req.params.id
     const blogs = await Blog.findByPk(blog_id, {}).
