@@ -27,11 +27,15 @@ router.get("/blog/:id", async (req, res) => {
     ]
     }],
   });
-
+  const userData = await User.findByPk(req.session.user_id,{});
+  
   const blog = blogs.get({ plain: true });
   const blogComments = blogs.get({ plain: true }).comments;
-  console.log(blogComments)
+  
+  const user = userData.get({ plain: true });
+  console.log(user)
   res.render("blog", {
+    user,
     blog,
     blogComments,
     logged_in: req.session.logged_in,

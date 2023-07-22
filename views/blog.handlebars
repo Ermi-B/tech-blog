@@ -19,7 +19,7 @@
         {{#each blogComments as |comment|}}
         <div class="w-4/5 border rounded my-2 p-2 px-4">
         <img class="w-16 h-16 mb-3 rounded-full shadow-lg" src="/img/icon.png" alt="">
-            <span class="text-sm text-gray-500 dark:text-gray-400">{{comment.user.name}}</span>
+            <span class="text-sm text-gray-500 dark:text-gray-400">{{user.name}}</span>
             <p class="text-sm">{{comment.content}}</p>
         </div>
         {{/each}}
@@ -31,5 +31,5 @@
     
    
 </div>
-
- 
+<p id="data" data-user-id="{{user.id}}" data-blog-id="{{blog.id}}"></p>
+ <script src="/js/comment.js"></script>
